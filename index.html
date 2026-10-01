@@ -527,7 +527,10 @@ a { color: inherit; }
 .track-org, .track-year { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); }
 .track-metric { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--gold); }
 .sheet-backdrop { display: none; }
-
+/* TED count-up */
+.ted-count { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; text-align: center; padding: 80px var(--gutter); background: var(--bg3); border-top: 1px solid var(--border); }
+.ted-count-figures { font-family: var(--font-condensed); font-size: clamp(60px, 12vw, 160px); line-height: 0.9; color: var(--white); }
+.ted-count-figures .after { display: block; font-size: 0.75em; color: var(--gold); margin-top: 8px; }
 /* Testimonials */
 .quotes {
   display: grid;
@@ -893,7 +896,7 @@ a { color: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  *:not(.logo-full span, .marquee-track), *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
   .reveal, .portrait-frame img { opacity: 1; transform: none; }
   /* The marquee keeps moving, at half speed, as a deliberate exception */
@@ -988,7 +991,7 @@ a { color: inherit; }
   <!-- Work. Content lives in PLAYLISTS in the script at the bottom. -->
   <section class="section section-deep" id="work">
     <p class="sec-label reveal">CURATED WORK</p>
-    <h2 class="sec-title reveal">Pick a playlist.<span>Press play on any track.</span></h2>
+    <h2 class="sec-title reveal">The Work.</h2>
     <div class="playlist-tabs" id="playlist-tabs" aria-label="Playlists"></div>
     <div class="player">
       <aside class="player-panel" id="player-panel" aria-live="polite"></aside>
@@ -1002,6 +1005,11 @@ a { color: inherit; }
     </div>
   </section>
   <div class="sheet-backdrop" id="sheet-backdrop"></div>
+  <section class="ted-count" aria-label="TED budget result">
+    <p class="mono-label">TED CONFERENCES · LOGISTICS</p>
+    <p class="ted-count-figures">$<span data-count-to="40">40</span>K <span class="after">→ $<span data-count-to="5">5</span>K</span></p>
+    <p class="mono-label">BUDGET PROTECTION WITHOUT ANYONE FEELING IT · 87% REDUCTION</p>
+  </section>
 
   <!-- Testimonials. Content lives in TESTIMONIALS in the script. Hidden until it has entries. -->
   <section class="section section-alt" id="testimonials" hidden>
@@ -1033,7 +1041,7 @@ a { color: inherit; }
 
   <section class="tools">
     <h2 class="sec-label">INSTRUMENTS OF CHOICE</h2>
-    <p class="tools-list">FIGMA · NOTION · ASANA · GOOGLE APPS SCRIPT · GOOGLE SUITE · ILLUSTRATOR · HTML</p>
+    <p class="tools-list">FIGMA · NOTION · ASANA · MIRO· AIRTABLE · GOOGLE APPS SCRIPT · GOOGLE SUITE · ILLUSTRATOR · CANVA · SQAURE · MICROSOFT SUITE· HTML</p>
   </section>
 
   <!-- Gallery. To add an image, copy an <li> and change the src, alt and caption. -->
@@ -1166,15 +1174,15 @@ const AUDIENCES = {
     stats: [['10+', 'YEARS EXPERIENCE'], ['87%', 'BUDGET REDUCTION'], ['1,200+', 'VENDORS MANAGED']],
   },
   'Recruiters': {
-    overline: 'SENIOR OPERATIONS LEADER · OPEN TO OPPORTUNITIES',
+    overline: 'SENIOR OPERATIONS LEADER',
     status: 'OPEN TO NEW OPPORTUNITIES',
-    tagline: ['Starting with vision. Leading with strategy. Landing on delivery.<br><br>I take tremendous pride in the work, love the pressure, and thrive where things are complex and ambiguous.',
-    stats: [['10+', 'YEARS EXPERIENCE'], ['6', 'INDUSTRIES'], ['100+', 'VOLUNTEERS TRAINED']],
+    tagline: ['Starting with vision. Leading with strategy. Landing on delivery.', 'I take tremendous pride in the work, love the pressure, and thrive where things are complex and ambiguous.'],
+    stats: [['2,579', 'APPLICATIONS PROCESSED'], ['976', 'VENDORS ACCEPTED'], ['CA$335K', 'VENDOR INVOICING']],
   },
   'Startup Founders': {
     overline: 'OPERATIONS LEAD & PRODUCT DESIGNER',
     status: 'OPEN TO NEW OPPORTUNITIES',
-    tagline: ['I find and solve problems you didn\'t know existed.<br><br>I see what most people miss. I build it. I write code and translate vision into a working MVP.',
+    tagline: ["I find and solve problems you didn't know existed.", 'I see what most people miss. I build it. I translate vision into a working MVP.'],
     stats: [['$35K', 'BUDGET SAVED'], ['400+', 'VENDORS PLACED'], ['0', 'SAFETY INCIDENTS']],
   },
   'Freelance Clients': {
@@ -1189,7 +1197,7 @@ const PLAYLISTS = [
   {
     name: 'MRG Live',
     role: 'Vendor & Operations Coordinator',
-    desc: 'Six festivals. One season of systems built from zero.',
+    desc: 'Six festivals. 2,579 applications. 976 vendors accepted. Systems built from zero.',
     tracks: [
       {
         title: 'Built from scratch. Zero guidance.',
@@ -1200,38 +1208,38 @@ const PLAYLISTS = [
         problem: "Six festivals, hundreds of vendors, and no system. Status lived in inboxes, spreadsheets and people's heads.",
         process: 'Designed the project structure from zero, then layered on dashboard widgets, automated emails and a 20-rule automation playbook documented in Notion.',
         tools: ['Asana', 'Notion', 'Gmail'],
-        result: '8 core rules ran 524 times with zero failures, and vendor status became visible to the whole team at a glance. Later certified as an Asana Workflow Specialist.',
+        result: '2,579 applications moved through one pipeline to 976 accepted vendors. 8 core rules ran 524 times with zero failures. Later certified as an Asana Workflow Specialist (57/60).',
       },
       {
-        title: 'Taught myself to code. Nobody asked.',
+        title: '7 trackers. One source of truth.',
         topic: 'GOOGLE APPS SCRIPT',
         year: '2026',
-        metric: '3 SCRIPTS',
+        metric: '7 SCRIPTS',
         img: 'apps_script.svg',
         problem: 'Placing vendors into booths meant copying rows by hand across category tabs, and missing or duplicate booth numbers slipped through.',
         process: 'Taught myself Apps Script and built placement scripts for Khatsahlano, Car Free Day Surrey and Pleasant Day. Each routes vendors from a live source tab into category tabs, consolidates to a MASTER tab and logs problems to a FLAGS tab.',
         tools: ['Google Apps Script', 'Google Sheets', 'Gmail'],
-        result: 'TODO: What changed? Hours saved per event, or errors caught before load-in.',
+        result: 'Placement for 4 events runs from one source tab. Missing and duplicate booth numbers are flagged automatically, in the FLAGS tab.',
       },
       {
-        title: '514 vendors. One source of truth.',
+        title: '7 trackers. One source of truth',
         topic: 'GOOGLE SHEETS STRUCTURE',
         year: '2026',
-        metric: '514 VENDORS',
+        metric: '976 APPROVED VENDORS',
         problem: 'Every festival had its own tracker, built differently, so nothing carried over and nothing could be trusted at a glance.',
         process: 'Rebuilt the trackers around one live source tab with FILTER formulas, dropdown validation and dashboards. Khatsahlano placed vendors across four passes and resolved adjacency conflicts automatically.',
         tools: ['Google Sheets', 'FILTER formulas', 'Data validation'],
         result: 'Khatsahlano: 514 vendors tracked live. Filberg: 153 booths and 130 vendors placed. Game Days: daily sales and food ticket reconciliation in one tracker.',
       },
       {
-        title: 'Load-in without the guesswork.',
+        title: 'Every answer before they arrive.',
         topic: 'GOOGLE DOCS · LOAD-IN / LOAD-OUT',
         year: '2026',
         metric: '6 EVENTS',
-        problem: 'Vendors got logistics in scattered emails, so the same questions came back every event.',
-        process: 'Built templated vendor information letters, load-in and load-out sheets and a site visit template, pulling placement details straight from the trackers.',
+        problem: 'Vendors arrived on site without enough information or context, so load-in started with confusion and the same questions at every booth.',
+        process: 'Built templated vendor information letters, load-in and load-out sheets and a site visit template that answered those questions in advance, pulling placement details straight from the trackers.',
         tools: ['Google Docs', 'Google Sheets', 'Gmail'],
-        result: 'TODO: What changed? Fewer vendor questions, a smoother load-in, any number you have.',
+        result: 'Vendors arrived knowing where to go, when to set up and what to expect, across six events.',
       },
       {
         title: 'Started as survival. Became infrastructure.',
@@ -1240,8 +1248,8 @@ const PLAYLISTS = [
         metric: '8 PHASES',
         img: 'gallery_02_notion_playbook.svg',
         problem: 'Vendor operations knowledge lived with one person. Without it written down, every handoff started from scratch.',
-        process: 'Documented the full lifecycle in Notion: 8 phases from recruitment to reconciliation, every deadline, compliance step and approval chain, plus an email template library with ten categories.',
-        tools: ['Notion', 'Google Workspace'],
+        process: 'Documented the full lifecycle in Notion: 8 phases from recruitment to reconciliation, every deadline, compliance step and approval chain. Added a ten-category email template library and a published Training Hub built for every learning style.',
+        tools: ['Notion', 'Asana', 'Google Workspace'],
         result: 'Covers 6 events and 3 health authority jurisdictions, including TFSA compliance review for 60+ vendors. Works without me in the room.',
       },
     ],
@@ -1249,16 +1257,16 @@ const PLAYLISTS = [
   {
     name: 'TED Conferences',
     role: 'Operations Coordinator',
-    desc: 'TODO: One line on what this chapter was about.',
+    desc: 'The vendors, logistics and budgets behind the talks.',
     tracks: [
       {
-        title: 'Budget protection without anyone feeling it.',
+        title: 'Same ask. No brand name. 87% less.',
         topic: 'LOGISTICS',
         metric: '87% SAVED',
         count: { from: 40, to: 5, prefix: '$', suffix: 'K' },
-        problem: 'TODO: What was the $40K for, and why did it need to come down?',
-        process: 'TODO: How did you get it to $5K?',
-        tools: [],
+        problem: 'Storage quotes came back inflated. When the TED name came first, vendors priced for the brand, not the job.',
+        process: 'Stopped leading with the brand. Led with the need instead: an event coming up, the storage required and the budget available, then asked what they could do with it. Every number offered had to be confirmed in writing by email before moving forward.',
+        tools: ['Vendor negotiation via phone call', 'Gmail'],
         result: 'Brought a $40K cost down to $5K, an 87% reduction, while tracking 100+ vendors.',
       },
     ],
@@ -1266,30 +1274,33 @@ const PLAYLISTS = [
   {
     name: 'The MicDrop Agency',
     role: 'Event Manager',
-    desc: 'TODO: One line on what this chapter was about.',
+    desc: 'Brand activations and insurance tech trade shows, run on site for clients.',
     tracks: [
       {
-        title: 'TODO: Track title',
-        topic: 'EVENT MANAGEMENT',
-        problem: 'TODO: What was broken or missing?',
-        process: 'TODO: What did you do?',
-        tools: [],
-        result: 'TODO: What changed, with a number if you have one?',
+        title: 'Booth late. Show on time.',
+        topic: 'TRADE SHOW · ON SITE',
+        metric: 'OPEN ON TIME',
+        problem: "First on site at an insurance tech trade show, and the client's new booth hadn't arrived. Doors were opening either way.",
+        process: 'Pulled the old banners, went to the hotel lobby for safety pins and pinned the display up. We ran the booth as it was, then swapped in the new display the moment it arrived.',
+        tools: ['Old banners', 'Hotel safety pins', 'Quick thinking'],
+        result: 'The client never lost a minute of show time. A delay in equipment did not become a delay in the event.',
       },
     ],
   },
   {
     name: 'City of Toronto',
-    role: 'TODO: Your role',
-    desc: 'TODO: One line on what this chapter was about.',
+        role: 'Location Supervisor',
+    desc: 'Outdoor rinks through COVID: thousands of skaters, mixed-age staff and a frustrated public.',
     tracks: [
       {
-        title: 'TODO: Track title',
-        topic: 'GOVERNMENT',
-        problem: 'TODO: What was broken or missing?',
-        process: 'TODO: What did you do?',
-        tools: [],
-        result: 'TODO: What changed, with a number if you have one?',
+        title: 'Redeployed mid-pandemic. Ran a tight ship.',
+        topic: 'MULTI-SITE OPERATIONS · SAFETY',
+        year: '2020',
+        metric: '30% FEWER BREACHES',
+        problem: "COVID moved me into the Rinks division, one of the few services the city kept open. New operations to learn, staff aged 14 to their 50s, a public taking its frustration out on the front line, and 20 concussions in a single week.",
+        process: 'Learned how the division ran and adapted my methods without bending the rules. Enforced helmets for every skater, cleared the ice before every Zamboni pass, introduced new site security protocols and trained staff in emergency preparedness and accountability.',
+        tools: ['HIGH FIVE principles', 'Safety protocols', 'Staff training'],
+        result: 'Fewer injuries and fewer confrontations, because the rules were the same for everyone, every time. Unauthorized access incidents dropped 30% across sites.',
       },
     ],
   },
@@ -1721,7 +1732,13 @@ trackList.addEventListener('click', event => {
 backdrop.addEventListener('click', closeSheet);
 
 showPlaylist(0);
-
+const tedCount = $('.ted-count');
+const tedObserver = new IntersectionObserver(([entry]) => {
+  if (!entry.isIntersecting) return;
+  $$('[data-count-to]', tedCount).forEach(el => countUp(el, Number(el.dataset.countTo), 4000));
+  tedObserver.disconnect();
+}, { threshold: 0.5 });
+tedObserver.observe(tedCount);
 
 /* Testimonials */
 
@@ -1762,11 +1779,13 @@ function closeLightbox() {
   lightboxReturnFocus?.focus();
 }
 
-$$('.gallery-item').forEach(item => item.addEventListener('click', () => openLightbox($('img', item))));
+$$('.gallery-item').forEach(item => {
+  const img = $('img', item);
+  img.addEventListener('error', () => item.closest('li').remove(), { once: true });
+  item.addEventListener('click', () => openLightbox(img));
+});
 $('#lightbox-close').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
-
-
 /* Footer playlist */
 
 const spotifyToggle = $('#spotify-toggle');
